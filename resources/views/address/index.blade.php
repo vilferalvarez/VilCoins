@@ -1,0 +1,59 @@
+@extends('layout.master')
+@section('estilos')
+<style type="text/css">
+	.special form{
+		display: inline;
+	}
+	.center{
+		text-align: center;
+	}
+	.right{
+		text-align: right;
+	}
+</style>
+
+@stop
+@section('contenido')
+	
+<div class="container-fluyd">
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<table class="table table-striped">
+			    <thead>
+			      <tr>
+	
+			         <th>Addresses</th>
+			         <th colspan="2" class="right"><a href="{{route('address.create')}}" class="btn btn-info">Add+</a></th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	@if(count($address)) 
+			    	@foreach($address as $ad)
+			    	<tr>
+			    		
+			    		<td><a href="{{route('address.show',$ad->id)}}">{{$ad->address}}</a></td>
+			    		<td class="special center"><a href="{{route('address.edit',$ad->id)}}" class="btn btn-default" role="button">Update</a>
+			    		
+			    			<form action="{{route('address.destroy',$ad->id)}}" class="form-inline" method="post">
+								{{csrf_field()}}
+								{{method_field('DELETE')}}
+								<input type="submit" name="eliminar" value="Delete" class="btn btn-danger">
+							</form>
+					    </td>	
+			    	</tr>
+			    	@endforeach
+			    	@else
+			    	<tr>
+			    		<td colspan="2"><h2>No Address</h2></td>
+			    	</tr>
+			    	
+			    	@endif
+			    </tbody>
+			</table>
+		</div>
+
+	</div>
+
+</div>
+
+@stop
