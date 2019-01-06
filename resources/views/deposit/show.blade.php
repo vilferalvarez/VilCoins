@@ -2,7 +2,7 @@
 @section('contenido')
 	<div class="container">
 		<div class="panel panel-primary">
-      		<div class="panel-heading"><strong>Addres detail ID:{{$deposit->id}}</strong></div>
+      		<div class="panel-heading"><strong>Deposit detail ID:{{$deposit->id}}</strong></div>
       		<div class="panel-body">
       			<ul>
 					<li><strong>Type:</strong>{{$deposit->type}}</li>
