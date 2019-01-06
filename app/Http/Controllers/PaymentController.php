@@ -14,7 +14,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+         $deposit=Payment::all()->sortBy('id');
+        return view('payment.index',compact('deposit'));
     }
 
     /**
@@ -57,7 +58,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return view('payment.edit',compact('payment'));
     }
 
     /**
@@ -69,7 +70,18 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        
+        $request->validate([
+            'type'=>'required',
+            'amount'=>'numeric'
+        ]);
+        $payment->type=$request->type;
+        $payment->rec_address=$request->rec_address;
+        $payment->text_id=$request->text_id;
+        $payment->amount=$request->amount;
+        $payment->save();
+        $request->session()->flash('completed', 'Edition successfully');
+        return redirect()->route('payment.index');
     }
 
     /**
@@ -80,6 +92,8 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        Session()->flash('completed', 'Deleted Payment');
+         return redirect()->route('payment.index');
     }
 }

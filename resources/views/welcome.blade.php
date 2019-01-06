@@ -85,8 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{route('address.index')}}">Address</a>
-                    <a href="{{route('deposit.index')}}">Deposit</a>
+                    <a href="{{route('address.index')}}">Addressese</a>
+                    <a href="{{route('deposit.index')}}">Deposits</a>
+                    <a href="{{route('payment.index')}}">Payments</a>
                 </div>
             </div>
         </div>
